@@ -15,7 +15,7 @@
 	
 	<body>	
 		<div id="header">
-			<span>EzSearchc</span>
+			<span>EzSearch</span>
 		</div>
 
 	<div id="contain">
@@ -40,6 +40,18 @@
 				<label for="Upload_Pic">Image</label>
 				<br />
 				<input id="Upload_Pic" type="file" name="pic" accept="image/*" />
+				<br />
+							
+				<input type="hidden" name="choice" value="4"/>
+				<input type="hidden" name="nonce" value="<?php echo $tempNonce ?>"/>
+				<input type="submit" value="Search" />
+			</form>
+			<form id="Insert_Product" method="post" action="process-search-sql.php">
+							
+							
+				<label for="Query_String">String</label>
+				<br />
+				<input id="Query_String" type="text" name="Query_String" />
 				<br />
 							
 				<input type="hidden" name="choice" value="4"/>
