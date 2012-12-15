@@ -1,0 +1,74 @@
+<?php
+	include_once "pro_init.php";
+	include_once "lib_base.php";
+	
+	
+	$_SESSION['$nonce'] = getNonce();
+	if(isset($_GET['statue']))
+	{
+		switch($_GET['statue'])
+		{
+			case 1:
+				{
+					$Display = "Invalide Username or Password,check them again,please!";
+					break;
+				}
+			case 2:
+				{
+					$Display = "Sorry about the XSS?";
+					break;
+				}
+			case 3:
+				{
+					$Display = "Logout";
+					break;
+				}
+		}
+		echo '<script type="text/javascript">alert('.'"'.$Display.'"'.');</script>';
+	}
+?>
+<!DOCTYPE html>
+	<html xmlns="http://www.w3.org/1999/xhtml">
+		<head>
+			<meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+			<title>User Login</title>
+			<link href="style.css" rel="stylesheet" type="text/css"/>
+		</head>
+		
+		<body>
+			<div id="header">
+				<span>User Login</span>
+			</div>
+	
+			<div id="main">
+				Log in your account<hr />
+				<div class="baseform">
+					<fieldset>
+						<legend>Log In</legend>
+						<form id="log" method="post" action="check.php">
+						
+							<label for="Username">Username*</label>
+							<br />
+							<input id="Username" type="text" name="Username" required="required"/>
+							<br />
+							
+							<label for="Password">Password*</label>
+							<br />
+							<input id="Password" type="password" name="Password" required="required"/>
+							<br />
+							
+							<input type="hidden" name="nonce" value="<?php echo $_SESSION['$nonce']; ?>"/>
+							<input type="hidden" name="action" value="auth"/>
+							<input type="submit" value="Log in" />
+							<a href="reset.php">Reset</a>
+							
+						</form>
+					</fieldset>
+				</div>
+			</div>
+				
+		<div id="footer">
+			<?php include 'footer.php' ?>
+		</div>
+	</body>
+</html>
